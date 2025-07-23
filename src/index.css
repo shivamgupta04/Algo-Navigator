@@ -1,0 +1,129 @@
+ body { margin: 0; font-family: sans-serif; }
+        .grid { border-collapse: collapse; box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+        .grid-row { display: flex; }
+        .node {
+          width: 25px;
+          height: 25px;
+          outline: 1px solid rgb(220, 238, 255);
+          display: inline-block;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .node:hover { background-color: #f0f8ff; }
+        .node-start {
+          background-color: #4caf50;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'%3E%3C/polygon%3E%3C/svg%3E");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 60%;
+          cursor: grab;
+        }
+        .node-finish {
+          background-color: #f44336;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Ccircle cx='12' cy='12' r='4'%3E%3C/circle%3E%3C/svg%3E");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 70%;
+          cursor: grab;
+        }
+        .node-wall {
+          background-color: #34495e;
+          animation: wall-animation 0.3s ease-out forwards;
+          border-radius: 2px;
+        }
+        @keyframes wall-animation {
+          0% { transform: scale(0.7); }
+          100% { transform: scale(1.0); }
+        }
+        .node-visited {
+          animation-name: visitedAnimation;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+        }
+        @keyframes visitedAnimation {
+          0% { transform: scale(0.3); background-color: #e74c3c; border-radius: 100%; }
+          50% { background-color: #8e44ad; }
+          75% { transform: scale(1.2); background-color: #3498db; }
+          100% { transform: scale(1); background-color: #2980b9; }
+        }
+        .node-shortest-path {
+          animation-name: shortestPath;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+        }
+        @keyframes shortestPath {
+          0% { transform: scale(0.6); background-color: #f1c40f; }
+          50% { transform: scale(1.2); background-color: #f1c40f; }
+          100% { transform: scale(1); background-color: #f1c40f; }
+        }
+        .popup-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .popup-content {
+          background: white;
+          padding: 2rem;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          text-align: center;
+          max-width: 500px;
+          animation: popup-animation 0.5s ease-out forwards;
+        }
+        
+        @keyframes popup-animation {
+          0% {
+            transform: scale(0.7);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        .popup-content h2 {
+          margin-top: 0;
+          color: #333;
+        }
+
+        .popup-content p, .popup-content ul {
+          text-align: left;
+          color: #666;
+        }
+        
+        .popup-content h4 {
+          text-align: left;
+          color: #333;
+          margin-top: 1rem;
+        }
+        
+        .popup-content ul {
+          list-style-position: inside;
+          padding-left: 0;
+        }
+
+        .continue-button {
+          margin-top: 1rem;
+          padding: 0.75rem 1.5rem;
+          border: none;
+          background-color: #4caf50;
+          color: white;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: background-color 0.3s;
+        }
+
+        .continue-button:hover {
+          background-color: #45a049;
+        }
